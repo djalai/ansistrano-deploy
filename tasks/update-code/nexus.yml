@@ -1,0 +1,17 @@
+---
+- name: ANSISTRANO | Nexus | Create release folder
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}"
+
+- name: ANSISTRANO | Nexus | Deploy existing code to remote servers
+  maven_artifact:
+    group_id: "{{ ansistrano_nexus_group_id }}"
+    artifact_id: "{{ ansistrano_nexus_artifact_id }}"
+    extension: "{{ ansistrano_nexus_extension }}"
+    version: "{{ release_version }}"
+    repository_url: "{{ ansistrano_nexus_repository }}"
+    username: "{{ ansistrano_nexus_user }}"
+    password: "{{ ansistrano_nexus_password }}"
+    dest: "{{ ansistrano_release_path.stdout }}/{{ ansistrano_nexus_artifact_id }}-{{ release_version }}.{{ ansistrano_nexus_extension }}"
+    validate_certs: "{{ ansistrano_validate_certs }}"
