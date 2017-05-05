@@ -11,7 +11,7 @@
     repo: "{{ ansistrano_git_repo }}"
     dest: "{{ ansistrano_deploy_to }}/repo"
     version: "{{ ansistrano_git_branch }}"
-    depth: "{{ ansistrano_git_repo_depth|default(10) }}"
+    depth: "{{ ansistrano_git_repo_depth }}"
     accept_hostkey: true
     update: yes
     force: yes
